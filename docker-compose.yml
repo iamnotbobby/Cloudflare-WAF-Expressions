@@ -6,4 +6,7 @@ services:
     volumes:
       - ./.env:/app/.env:ro
       - ./rules/my-lists:/app/rules/my-lists
-      - ./data:/app/data
+      - rule-ids:/app/data/rule-ids.json
+
+volumes:
+  rule-ids:
