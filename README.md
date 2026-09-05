@@ -101,6 +101,13 @@ There's no need to add them manually, as the script takes care of everything for
    eval "$(pm2 startup | grep sudo)"
    ```
 
+### Docker
+1. Grab [`docker-compose.yml`](docker-compose.yml) and [`.env.example`](.env.example), then rename the latter to `.env` and configure it as described above.
+2. Start the container:
+   ```bash
+   docker compose up -d
+   ```
+
 ### Manually
 > [!CAUTION]
 > This method is not recommended. WAF expressions and IP blocklists should be kept up to date at all times to remain effective against new threats. Updating them manually is error-prone and easy to forget. Use the [automatic method](#automatic-installation) instead.

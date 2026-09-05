@@ -1,0 +1,9 @@
+node_modules
+npm-debug.log
+.env
+.idea
+.github
+test
+CHANGELOG.md
+README.md
+LICENSE

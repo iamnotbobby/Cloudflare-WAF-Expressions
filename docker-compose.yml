@@ -1,0 +1,9 @@
+services:
+  cf-waf:
+    image: ghcr.io/iamnotbobby/cloudflare-waf-expressions:latest
+    container_name: cf-waf
+    restart: unless-stopped
+    volumes:
+      - ./.env:/app/.env:ro
+      - ./rules/my-lists:/app/rules/my-lists
+      - ./data:/app/data
