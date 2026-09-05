@@ -13,6 +13,8 @@ const formatDuration = require('../../scripts/duration.js');
 const { CF_API_TOKEN } = process.env;
 if (!CF_API_TOKEN) throw new Error('CF_API_TOKEN is missing. Check the .env file.');
 
+const DISABLED_PARTS = new Set((process.env.DISABLED_PARTS || '').split(',').map(s => parseInt(s.trim())).filter(n => !isNaN(n)));
+
 const getZones = async (excludedNames = []) => {
 	log('Retrieving all zones from your Cloudflare account...');
 
@@ -90,7 +92,7 @@ const updateWAFCustomRulesForZone = async (expressions, allowlistEntries, zone) 
 		const partRules = [];
 		for (const [indexStr, block] of Object.entries(expressions)) {
 			const index = parseInt(indexStr);
-			if (isNaN(index)) continue;
+			if (isNaN(index) || DISABLED_PARTS.has(index)) continue;
 
 			const { name, action, expressions: part } = block;
 			const expression = allowlistExpression
