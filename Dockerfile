@@ -9,8 +9,6 @@ RUN npm ci --omit=dev
 
 COPY . .
 
-RUN [ -f data/rule-ids.json ] || echo '{}' > data/rule-ids.json
-
 RUN git config --global --add safe.directory /app
 
 ENV NODE_ENV=production
